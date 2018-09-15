@@ -10,7 +10,7 @@
 namespace WebApp.SamplePages {
     
     
-    public partial class ODSQuery {
+    public partial class QueryListView {
         
         /// <summary>
         /// Label1 control.
@@ -46,7 +46,7 @@ namespace WebApp.SamplePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView AlbumList;
+        protected global::System.Web.UI.WebControls.ListView AlbumList;
         
         /// <summary>
         /// ArtistListODS control.
