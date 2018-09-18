@@ -1,14 +1,6 @@
 ﻿<%@ Page Title="Query ListView" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="QueryListView.aspx.cs" Inherits="WebApp.SamplePages.QueryListView" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Query ListView</h1>
-    <asp:Label ID="Label1" runat="server" Text="Select an artist"></asp:Label>
-    <asp:DropDownList ID="ArtistList" runat="server" 
-        DataSourceID="ArtistListODS" 
-        DataTextField="Name" 
-        DataValueField="ArtistId"
-        AppendDataBoundItems="true">
-        <asp:ListItem Value="0">select...</asp:ListItem>
-    </asp:DropDownList>
+     
     <asp:LinkButton ID="FetchArtist" runat="server">Fetch</asp:LinkButton>
     <br /><br />
     <asp:ListView ID="AlbumList" runat="server" DataSourceID="AlbumListODS">
@@ -65,11 +57,11 @@
                     <td runat="server">
                         <table runat="server" id="itemPlaceholderContainer" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #999999; border-style: none; border-width: 1px; font-family: Verdana, Arial, Helvetica, sans-serif;" border="1">
                             <tr runat="server" style="background-color: #E0FFFF; color: #333333;">
-                                <th runat="server">AlbumId</th>
+                                <th runat="server">Id</th>
                                 <th runat="server">Title</th>
-                                <th runat="server">ArtistId</th>
-                                <th runat="server">ReleaseYear</th>
-                                <th runat="server">ReleaseLabel</th>
+                                <th runat="server">Artist</th>
+                                <th runat="server">Year</th>
+                                <th runat="server">Label</th>
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
                         </table>
