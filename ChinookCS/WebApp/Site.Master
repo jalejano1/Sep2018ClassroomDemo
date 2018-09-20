@@ -85,6 +85,7 @@
                                 <asp:MenuItem Text="ODS Query" NavigateUrl="~/SamplePages/ODSQuery.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="Query ListView" NavigateUrl="~/SamplePages/QueryListView.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="ODS CRUD" NavigateUrl="~/SamplePages/ODSCRUD.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="ListView Data Access" NavigateUrl="~/SamplePages/AlbumDetails.aspx"></asp:MenuItem>
                             </asp:MenuItem>
                             <asp:MenuItem Text="Contact" NavigateUrl="~/Contact.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="About" NavigateUrl="~/About.aspx"></asp:MenuItem>                                                          

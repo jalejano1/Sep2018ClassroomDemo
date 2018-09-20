@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="ODS CRUD" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ODSCRUD.aspx.cs" Inherits="WebApp.SamplePages.ODSCRUD" %>
+
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>ODS CRUD</h1>
     <blockquote>
@@ -9,6 +12,9 @@
         ListView set of attributes the DataKeyNames. This is set to the primary ket attribute
         of the entity.
     </blockquote>
+
+    <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+
     <asp:ListView ID="AlbumList" runat="server" DataSourceID="AlbumListODS" DataKeyNames="AlbumId" InsertItemPosition="LastItem">
         <AlternatingItemTemplate>
             <tr style="background-color: #FFFFFF; color: #284775;">
@@ -171,12 +177,17 @@
     </asp:ListView>
     <asp:ObjectDataSource ID="ArtistListODS" runat="server" OldValuesParameterFormatString="original_{0}"
         SelectMethod="Artist_List" 
-        TypeName="ChinookSystem.BLL.ArtistController"></asp:ObjectDataSource>
+        TypeName="ChinookSystem.BLL.ArtistController"
+        OnSelected="CheckForException"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="AlbumListODS" runat="server" 
         DataObjectTypeName="Chinook.Data.Entities.Album" 
         DeleteMethod="Album_Delete" 
         InsertMethod="Album_Add" 
         OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="Album_List" TypeName="ChinookSystem.BLL.AlbumController" 
+        SelectMethod="Album_List" 
+        TypeName="ChinookSystem.BLL.AlbumController" 
+        OnDeleted="CheckForException"
+        OnInserted="CheckForException"
+        OnSelected="CheckForException"
         UpdateMethod="Album_Update"></asp:ObjectDataSource>
 </asp:Content>
