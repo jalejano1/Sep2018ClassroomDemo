@@ -226,6 +226,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="SamplePages\SimpleRepeater.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -441,6 +442,13 @@
     </Compile>
     <Compile Include="SamplePages\QueryListView.aspx.designer.cs">
       <DependentUpon>QueryListView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\SimpleRepeater.aspx.cs">
+      <DependentUpon>SimpleRepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\SimpleRepeater.aspx.designer.cs">
+      <DependentUpon>SimpleRepeater.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using Chinook.Data.Entities;
 using ChinookSystem.DAL;
+using Chinook.Data.POCOs;
+using Chinook.Data.DTOs;
 #endregion
 
 namespace ChinookSystem.BLL
@@ -87,8 +89,29 @@ namespace ChinookSystem.BLL
                 return context.SaveChanges();
             }
         }
-
-
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<AnAlbum> Album_GetAlbumAndSongs()
+        {
+            using (var context = new ChinookContext())
+            {
+                var results = from x in context.Albums
+                              where x.Tracks.Count() > 24
+                              select new AnAlbum
+                              {
+                                  artist = x.Artist.Name,
+                                  title = x.Title,
+                                  songs = (from y in x.Tracks
+                                          select new Songs
+                                          {
+                                              songname = y.Name,
+                                              length = y.Milliseconds / 60000 + "," + (y.Milliseconds % 60000) / 1000
+                                          }).ToList()
+                              };
+                return results.ToList();
+            }
+            
+            
+        }
 
     }
 }
