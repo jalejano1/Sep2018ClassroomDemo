@@ -215,6 +215,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SamplePages\AlbumDetails.aspx" />
+    <Content Include="SamplePages\NestedRepeater.aspx" />
+    <Content Include="SamplePages\NestedRepeater2.aspx" />
     <Content Include="SamplePages\ODSCRUD.aspx" />
     <Content Include="SamplePages\ODSQuery.aspx" />
     <Content Include="SamplePages\QueryListView.aspx" />
@@ -421,6 +423,20 @@
     </Compile>
     <Compile Include="SamplePages\AlbumDetails.aspx.designer.cs">
       <DependentUpon>AlbumDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\NestedRepeater.aspx.cs">
+      <DependentUpon>NestedRepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\NestedRepeater.aspx.designer.cs">
+      <DependentUpon>NestedRepeater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\NestedRepeater2.aspx.cs">
+      <DependentUpon>NestedRepeater2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\NestedRepeater2.aspx.designer.cs">
+      <DependentUpon>NestedRepeater2.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\ODSCRUD.aspx.cs">
       <DependentUpon>ODSCRUD.aspx</DependentUpon>
