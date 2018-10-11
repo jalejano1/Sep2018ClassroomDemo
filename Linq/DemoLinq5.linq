@@ -22,6 +22,8 @@ from x in Albums
 group x by x.ReleaseYear into gYear
 select gYear
 
+
+
 from x in Albums
 group x by x.ReleaseYear into gYear
 select new
@@ -55,3 +57,30 @@ select new
 	genre = gTemp.Key.Name,
 	numberof = gTemp.Count()
 }
+
+
+
+//create a list of employees showing the customers
+//that each employee supports
+//what is the datapiletogroup? Customers
+//what is the grouping attribute criteria? by Employee
+from x in Customers
+group x by x.SupportRepIdEmployee into gEmployeeCustomerList
+select new 
+{
+	Firstname = gEmployeeCustomerList.Key.FirstName,
+	Lastname = gEmployeeCustomerList.Key.LastName,
+	Phone = gEmployeeCustomerList.Key.Phone,
+	Email = gEmployeeCustomerList.Key.Email,
+	NumberOfCustomers = gEmployeeCustomerList.Count(),
+	CustomerList = from y in gEmployeeCustomerList
+					select new 
+					{
+						Name = y.LastName + ", " + y.FirstName,
+						Phone = y.Phone,
+						Email = y.Email
+					}
+}
+
+
+
