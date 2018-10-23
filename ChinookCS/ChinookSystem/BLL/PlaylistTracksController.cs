@@ -29,10 +29,66 @@ namespace ChinookSystem.BLL
         }//eom
         public void Add_TrackToPLaylist(string playlistname, string username, int trackid)
         {
+            //the using sets up the transactions environment
+
+
+            //a List<string> to be used to handle any number of errors 
+            //generated while doing the transaction 
+            List<string> reasons = new List<string>();
             using (var context = new ChinookContext())
             {
-                //code to go here
                 
+                //code to go here
+                //Part two
+                Playlist exists = context.Playlists.Where(x => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase) 
+                                            && x.Name.Equals(playlistname, StringComparison.OrdinalIgnoreCase)).Select(x => x).FirstOrDefault();
+                //create an instance for PlaylistTrack
+                PlaylistTrack newTrack = null;
+                // initialize a local tracknumber 
+                int tracknumber = 0;
+                if(exists == null)
+                {
+                    //this is a new playlist being created 
+                    exists = new Playlist();
+                    exists.Name = playlistname;
+                    exists.UserName = username;
+                    exists = context.Playlists.Add(exists);
+                    tracknumber = 1;
+                }
+                else
+                {
+                    //this is an existing playlist
+                    //calculate the new proposed tracknumber
+                    tracknumber = exists.PlaylistTracks.Count() + 1;
+                    //business rule: track may only exists once on a playlist it may exists on many different playlists
+                    //.SingleOrDefault() expects a single instance to be returned
+                    newTrack = exists.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackid);
+                    if(newTrack != null)
+                    {
+                        reasons.Add("Track already exists on the playlist.");
+                    }
+                }
+                if(reasons.Count() > 0)
+                {
+                    //issue the businessRuleExeption(title, list of error strings)
+                    throw new BusinessRuleException("Adding track to playlist", reasons);
+                }
+                else
+                {
+                    //Part two
+                    newTrack = new PlaylistTrack();
+                    newTrack.TrackId = trackid;
+                    newTrack.TrackNumber = tracknumber;
+
+                    //whatabout the PlaylistId?
+                    //Note: the pkey for PlaylistId may not yet exists
+                    //     using navigation one can let HashSet handle the expected
+                    //      Playlist pkey value
+                    exists.PlaylistTracks.Add(newTrack);
+                    //at this point all records are in staged state
+                    //physically add all data for the transaction to the database and commit
+                    context.SaveChanges();
+                }
              
             }
         }//eom

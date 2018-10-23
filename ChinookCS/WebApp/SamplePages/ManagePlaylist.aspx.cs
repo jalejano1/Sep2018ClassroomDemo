@@ -99,7 +99,35 @@ namespace Jan2018DemoWebsite.SamplePages
         protected void TracksSelectionList_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             //code to go here
-           
+           if(string.IsNullOrEmpty(PlaylistName.Text))
+           {
+                // use the messageUserControl method .ShowInfo("title","message")
+                MessageUserControl.ShowInfo("Required data", "Playlistname is required to add a track.");
+
+           }
+           else
+           {
+                // collect the needed data
+                string playlistname = PlaylistName.Text;
+                //string username = User.Identity.Name; //comes from security
+                string username = "HansenB";
+                //obtain the TrackId from the listView
+                //CommandAgrument is an object
+                int trackid = int.Parse(e.CommandArgument.ToString());
+                MessageUserControl.TryRun(() =>
+                {
+                    PlaylistTracksController sysmgr = new PlaylistTracksController();
+                    sysmgr.Add_TrackToPLaylist(playlistname, username, trackid);
+                    List<UserPlaylistTrack> results = sysmgr.List_TracksForPlaylist(
+                        playlistname, username);
+                    PlayList.DataSource = results;
+                    PlayList.DataBind();
+
+
+
+                },"Adding a track", "Track has been added to the playlist.");
+
+           }
         }
 
     }
