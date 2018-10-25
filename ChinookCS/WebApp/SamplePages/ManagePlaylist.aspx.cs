@@ -77,8 +77,31 @@ namespace Jan2018DemoWebsite.SamplePages
 
         protected void PlayListFetch_Click(object sender, EventArgs e)
         {
-            //code to go here b
-           
+            //code to go here 
+            if (string.IsNullOrEmpty(PlaylistName.Text))
+            {
+                // use the messageUserControl method .ShowInfo("title","message")
+                MessageUserControl.ShowInfo("Required data", "Playlistname is required to add a track.");
+
+            }
+            else
+            {
+                // collect the needed data
+                string playlistname = PlaylistName.Text;
+                //string username = User.Identity.Name; //comes from security
+                string username = "HansenB";
+                //obtain the TrackId from the listView
+                //CommandAgrument is an object              
+                MessageUserControl.TryRun(() =>
+                {
+                    PlaylistTracksController sysmgr = new PlaylistTracksController();
+                    List<UserPlaylistTrack> results = sysmgr.List_TracksForPlaylist(
+                        playlistname, username);
+                    PlayList.DataSource = results;
+                    PlayList.DataBind();
+
+                }, "Playlist Tracks", "See current tracks on playlist below.");
+            }
         }
 
         protected void MoveDown_Click(object sender, EventArgs e)
