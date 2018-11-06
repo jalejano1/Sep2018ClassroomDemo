@@ -229,6 +229,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Security\SecurityAdmin.aspx" />
     <Content Include="SamplePages\SimpleRepeater.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -417,6 +418,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Security\SecurityController.cs" />
+    <Compile Include="Security\SecurityDbContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SamplePages\AlbumDetails.aspx.cs">
       <DependentUpon>AlbumDetails.aspx</DependentUpon>
@@ -466,6 +469,13 @@
     </Compile>
     <Compile Include="SamplePages\QueryListView.aspx.designer.cs">
       <DependentUpon>QueryListView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\SecurityAdmin.aspx.cs">
+      <DependentUpon>SecurityAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\SecurityAdmin.aspx.designer.cs">
+      <DependentUpon>SecurityAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\SimpleRepeater.aspx.cs">
       <DependentUpon>SimpleRepeater.aspx</DependentUpon>
